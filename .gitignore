@@ -13,3 +13,6 @@
 
 # IntelliJ
 /out/
+
+# Maven
+*.iml
