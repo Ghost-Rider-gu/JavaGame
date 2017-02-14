@@ -7,19 +7,31 @@
     <groupId>game.simple</groupId>
     <artifactId>game.S</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
-    <!-- https://mvnrepository.com/artifact/org.slick2d/slick2d-basic-game-archetype -->
-    <dependency>
-        <groupId>org.slick2d</groupId>
-        <artifactId>slick2d-basic-game-archetype</artifactId>
-        <version>1.0.2</version>
-    </dependency>
+    <dependencies>
+        <dependency>
+            <groupId>org.slick2d</groupId>
+            <artifactId>slick2d-basic-game-archetype</artifactId>
+            <version>1.0.2</version>
+        </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.slick2d/slick2d-core -->
-    <dependency>
-        <groupId>org.slick2d</groupId>
-        <artifactId>slick2d-core</artifactId>
-        <version>1.0.2</version>
-    </dependency>
+        <dependency>
+            <groupId>org.slick2d</groupId>
+            <artifactId>slick2d-core</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+</dependencies>
 
 </project>
