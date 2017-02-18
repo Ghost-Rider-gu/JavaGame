@@ -16,3 +16,6 @@
 
 # Maven
 *.iml
+
+# Compile classes
+AlienShooter/target
