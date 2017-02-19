@@ -3,9 +3,24 @@ import org.newdawn.slick.*;
 public class Core extends BasicGame
 {
     /**
+     * Constant for resources path
+     */
+    private final String resourcePath = "AlienShooter/resources/";
+
+    /**
      * Background game (image)
      */
     private Image background;
+
+    /**
+     * Main player
+     */
+    private Image shipMaster;
+
+    // Parameters for main player
+    private float x = 200.0f;
+    private float y = 200.0f;
+    private float speed = 0.2f;
 
     /**
      * Constructor
@@ -41,20 +56,29 @@ public class Core extends BasicGame
     @Override
     public void init(GameContainer gameContainer) throws SlickException
     {
-        this.background = new Image("AlienShooter/resources/background/SpaceBack.png");
+        this.background = new Image(this.resourcePath + "background/SpaceBack.png").getScaledCopy(gameContainer.getScreenWidth(), gameContainer.getScreenHeight());
+        this.shipMaster = new Image(this.resourcePath + "sprites/MainPlayer.png");
     }
 
     /**
-     * Update state
+     * AI, game logic
      *
      * @param gameContainer
-     * @param i
+     * @param delta
      * @throws SlickException
      */
     @Override
-    public void update(GameContainer gameContainer, int i) throws SlickException
+    public void update(GameContainer gameContainer, int delta) throws SlickException
     {
+        Input mainInput = gameContainer.getInput();
 
+        if (mainInput.isKeyDown(Input.KEY_RIGHT)) {
+            x += this.speed * delta;
+        }
+
+        if (mainInput.isKeyDown(Input.KEY_LEFT)) {
+            x -= this.speed * delta;
+        }
     }
 
     /**
@@ -67,5 +91,6 @@ public class Core extends BasicGame
     public void render(GameContainer gameContainer, Graphics graphics) throws SlickException
     {
         graphics.drawImage(this.background, 0,0);
+        graphics.drawImage(this.shipMaster, this.x, this.y);
     }
 }
