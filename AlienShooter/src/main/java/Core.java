@@ -1,11 +1,11 @@
 import org.newdawn.slick.*;
 
-public class Core extends BasicGame
+public final class Core extends BasicGame
 {
     /**
      * Constant for resources path
      */
-    private final String resourcePath = "AlienShooter/resources/";
+    private final String RESOURCE_PATH = "AlienShooter/resources/";
 
     /**
      * Background game (image)
@@ -56,8 +56,8 @@ public class Core extends BasicGame
     @Override
     public void init(GameContainer gameContainer) throws SlickException
     {
-        this.background = new Image(this.resourcePath + "background/SpaceBack.png").getScaledCopy(gameContainer.getScreenWidth(), gameContainer.getScreenHeight());
-        this.shipMaster = new Image(this.resourcePath + "sprites/MainPlayer.png");
+        this.background = new Image(this.RESOURCE_PATH + "background/SpaceBack.png").getScaledCopy(gameContainer.getScreenWidth(), gameContainer.getScreenHeight());
+        this.shipMaster = new Image(this.RESOURCE_PATH + "sprites/MainPlayer.png");
     }
 
     /**
@@ -73,11 +73,11 @@ public class Core extends BasicGame
         Input mainInput = gameContainer.getInput();
 
         if (mainInput.isKeyDown(Input.KEY_RIGHT)) {
-            x += this.speed * delta;
+            this.x += this.speed * delta;
         }
 
         if (mainInput.isKeyDown(Input.KEY_LEFT)) {
-            x -= this.speed * delta;
+            this.x -= this.speed * delta;
         }
     }
 
