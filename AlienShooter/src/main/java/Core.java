@@ -87,6 +87,14 @@ public final class Core extends BasicGame
         if (mainInput.isKeyDown(Input.KEY_LEFT)) {
             this.x -= this.speed * delta;
         }
+
+        if (mainInput.isKeyDown(Input.KEY_UP)) {
+            this.y -= this.speed * delta;
+        }
+
+        if (mainInput.isKeyDown(Input.KEY_DOWN)) {
+            this.y += this.speed * delta;
+        }
     }
 
     /**
