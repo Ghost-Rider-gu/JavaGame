@@ -17,6 +17,11 @@ public final class Core extends BasicGame
      */
     private Image shipMaster;
 
+    /**
+     * Main cursor for game
+     */
+    private Image cursor;
+
     // Parameters for main player
     private float x = 200.0f;
     private float y = 200.0f;
@@ -58,6 +63,9 @@ public final class Core extends BasicGame
     {
         this.background = new Image(this.RESOURCE_PATH + "background/SpaceBack.png").getScaledCopy(gameContainer.getScreenWidth(), gameContainer.getScreenHeight());
         this.shipMaster = new Image(this.RESOURCE_PATH + "sprites/MainPlayer.png");
+        this.cursor     = new Image(this.RESOURCE_PATH + "UI_Elements/cursor.png");
+
+        gameContainer.setMouseCursor(this.cursor, 1,1);
     }
 
     /**
