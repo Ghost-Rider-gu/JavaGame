@@ -1,7 +1,25 @@
+import GameEngine.GameMenu;
+import GameEngine.GamePlay;
 import org.newdawn.slick.*;
+import org.newdawn.slick.state.*;
 
-public final class Core extends BasicGame
+public final class Core extends StateBasedGame
 {
+    /**
+     * Game name
+     */
+    public static final String GAME_NAME = "Alien Shooter - the space adventure";
+
+    /**
+     * Game state MENU
+     */
+    public static final int GAME_MENU = 0;
+
+    /**
+     * Game state PLAY
+     */
+    public static final int GAME_PLAY = 1;
+
     /**
      * Constant for resources path
      */
@@ -30,11 +48,14 @@ public final class Core extends BasicGame
     /**
      * Constructor
      *
-     * @param title
+     * @param gameName
      */
-    public Core(String title)
+    public Core(String gameName)
     {
-        super(title);
+        super(gameName);
+
+        this.addState(new GameMenu(GAME_MENU));
+        this.addState(new GamePlay(GAME_PLAY));
     }
 
     /**
@@ -66,6 +87,11 @@ public final class Core extends BasicGame
         this.cursor     = new Image(this.RESOURCE_PATH + "UI_Elements/cursor.png");
 
         gameContainer.setMouseCursor(this.cursor, 1,1);
+    }
+
+    @Override
+    public void initStatesList(GameContainer gameContainer) throws SlickException {
+
     }
 
     /**
