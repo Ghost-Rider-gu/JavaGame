@@ -1,5 +1,6 @@
 import GameEngine.GameMenu;
 import GameEngine.GamePlay;
+
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
 
@@ -46,7 +47,7 @@ public final class Core extends StateBasedGame
     private float speed = 0.2f;
 
     /**
-     * Constructor
+     * Constructor (prepare the elements game)
      *
      * @param gameName
      */
@@ -65,12 +66,12 @@ public final class Core extends StateBasedGame
      */
     public static void main(String[] args)
     {
-        try {
-            AppGameContainer alienShooter;
+        AppGameContainer alienShooter;
 
-            alienShooter = new AppGameContainer(new Core("Alien Shooter - the space adventure"));
-            alienShooter.setDisplayMode(800, 600, false);
-            alienShooter.start();
+        try {
+                alienShooter = new AppGameContainer(new Core(GAME_NAME));
+                alienShooter.setDisplayMode(800, 600, false);
+                alienShooter.start();
         } catch (SlickException ex) {
             ex.printStackTrace();
         }
@@ -89,9 +90,21 @@ public final class Core extends StateBasedGame
         gameContainer.setMouseCursor(this.cursor, 1,1);
     }
 
+    /**
+     * Initial all game screen
+     *
+     * @param gameContainer
+     * @throws SlickException
+     */
     @Override
-    public void initStatesList(GameContainer gameContainer) throws SlickException {
+    public void initStatesList(GameContainer gameContainer) throws SlickException
+    {
+        // Init screens
+        this.getState(GAME_MENU).init(gameContainer, this);
+        this.getState(GAME_PLAY).init(gameContainer, this);
 
+        // Starter screen
+        this.enterState(GAME_MENU);
     }
 
     /**
