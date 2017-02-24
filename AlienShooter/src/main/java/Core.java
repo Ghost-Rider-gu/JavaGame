@@ -1,6 +1,6 @@
 import GameEngine.GameMenu;
 import GameEngine.GamePlay;
-import GameEngine.GameSubtitles;
+import GameEngine.GameCredits;
 
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.StateBasedGame;
@@ -10,32 +10,32 @@ public final class Core extends StateBasedGame
     /**
      * Game name
      */
-    public static final String GAME_NAME = "Alien Shooter - the space adventure";
+    private static final String GAME_NAME = "Alien Shooter - the space adventure";
 
     /**
      * Screen width (pixels)
      */
-    public static final int SCREEN_WIDTH  = 1280;
+    private static final int SCREEN_WIDTH  = 1600;
 
     /**
      * Screen height (pixels)
      */
-    public static final int SCREEN_HEIGHT = 1024;
+    private static final int SCREEN_HEIGHT = 900;
 
     /**
      * Game state MENU
      */
-    public static final int GAME_MENU = 0;
+    private static final int GAME_MENU = 0;
 
     /**
      * Game state PLAY
      */
-    public static final int GAME_PLAY = 1;
+    private static final int GAME_PLAY = 1;
 
     /**
-     * Game state SUBTITLES
+     * Game state CREDITS
      */
-    public static final int GAME_SUBTITLES = 2;
+    private static final int GAME_CREDITS = 2;
 
 
     /**
@@ -50,7 +50,7 @@ public final class Core extends StateBasedGame
         // add all the game states
         this.addState(new GameMenu(GAME_MENU));
         this.addState(new GamePlay(GAME_PLAY));
-        this.addState(new GameSubtitles(GAME_SUBTITLES));
+        this.addState(new GameCredits(GAME_CREDITS));
     }
 
     /**
@@ -74,8 +74,9 @@ public final class Core extends StateBasedGame
     /**
      * Initial all game screen
      *
-     * @param gameContainer {@link GameContainer}
-     * @throws SlickException {@link SlickException}
+     * @param gameContainer     {@link GameContainer}
+     *
+     * @throws SlickException   {@link SlickException}
      */
     @Override
     public void initStatesList(GameContainer gameContainer) throws SlickException
@@ -83,7 +84,7 @@ public final class Core extends StateBasedGame
         // Init screens
         this.getState(GAME_MENU).init(gameContainer, this);
         this.getState(GAME_PLAY).init(gameContainer, this);
-        this.getState(GAME_SUBTITLES).init(gameContainer, this);
+        this.getState(GAME_CREDITS).init(gameContainer, this);
 
         // Starter screen
         this.enterState(GAME_MENU);
