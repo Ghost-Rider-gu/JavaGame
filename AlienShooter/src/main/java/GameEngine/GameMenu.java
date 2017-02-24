@@ -2,159 +2,93 @@ package GameEngine;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Input;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.state.GameState;
+import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-public class GameMenu implements GameState
+public final class GameMenu extends BasicGameState
 {
+    /**
+     * Constant for resources path
+     */
+    private final String RESOURCE_PATH = "AlienShooter/resources/";
+
+    /**
+     * Main cursor for game
+     */
+    private Image cursor;
+
+    /**
+     * Background game
+     */
+    private Image background;
+
+    /**
+     * Constructor for menu screen
+     *
+     * @param gameMenu int
+     */
     public GameMenu(int gameMenu)
     {
 
     }
 
+    /**
+     * Get state id
+     *
+     * @return int
+     */
     @Override
     public int getID()
     {
         return 0;
     }
 
+    /**
+     * Prepare main menu elements
+     *
+     * @param gameContainer     {@link GameContainer}
+     * @param stateBasedGame    {@link StateBasedGame}
+     *
+     * @throws SlickException   {@link SlickException}
+     */
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException
     {
+        this.background = new Image(this.RESOURCE_PATH + "background/SpaceBack.png").getScaledCopy(gameContainer.getScreenWidth(), gameContainer.getScreenHeight());
+        this.cursor     = new Image(this.RESOURCE_PATH + "UI_Elements/cursor.png");
 
+        gameContainer.setMouseCursor(this.cursor, 1,1);
     }
 
+    /**
+     * Rendering, draw images, text and other elements
+     *
+     * @param gameContainer     {@link GameContainer}
+     * @param stateBasedGame    {@link StateBasedGame}
+     * @param graphics          {@link Graphics}
+     *
+     * @throws SlickException   {@link SlickException}
+     */
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException
     {
-
+        graphics.drawImage(this.background, 0, 0);
     }
 
+    /**
+     * AI, game logic
+     *
+     * @param gameContainer     {@link GameContainer}
+     * @param stateBasedGame    {@link StateBasedGame}
+     * @param delta             int
+     *
+     * @throws SlickException   {@link SlickException}
+     */
     @Override
-    public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException
+    public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException
     {
-
-    }
-
-    @Override
-    public void enter(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
-
-    }
-
-    @Override
-    public void leave(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
-
-    }
-
-    @Override
-    public void controllerLeftPressed(int i) {
-
-    }
-
-    @Override
-    public void controllerLeftReleased(int i) {
-
-    }
-
-    @Override
-    public void controllerRightPressed(int i) {
-
-    }
-
-    @Override
-    public void controllerRightReleased(int i) {
-
-    }
-
-    @Override
-    public void controllerUpPressed(int i) {
-
-    }
-
-    @Override
-    public void controllerUpReleased(int i) {
-
-    }
-
-    @Override
-    public void controllerDownPressed(int i) {
-
-    }
-
-    @Override
-    public void controllerDownReleased(int i) {
-
-    }
-
-    @Override
-    public void controllerButtonPressed(int i, int i1) {
-
-    }
-
-    @Override
-    public void controllerButtonReleased(int i, int i1) {
-
-    }
-
-    @Override
-    public void keyPressed(int i, char c) {
-
-    }
-
-    @Override
-    public void keyReleased(int i, char c) {
-
-    }
-
-    @Override
-    public void mouseWheelMoved(int i) {
-
-    }
-
-    @Override
-    public void mouseClicked(int i, int i1, int i2, int i3) {
-
-    }
-
-    @Override
-    public void mousePressed(int i, int i1, int i2) {
-
-    }
-
-    @Override
-    public void mouseReleased(int i, int i1, int i2) {
-
-    }
-
-    @Override
-    public void mouseMoved(int i, int i1, int i2, int i3) {
-
-    }
-
-    @Override
-    public void mouseDragged(int i, int i1, int i2, int i3) {
-
-    }
-
-    @Override
-    public void setInput(Input input) {
-
-    }
-
-    @Override
-    public boolean isAcceptingInput() {
-        return false;
-    }
-
-    @Override
-    public void inputEnded() {
-
-    }
-
-    @Override
-    public void inputStarted() {
 
     }
 }
