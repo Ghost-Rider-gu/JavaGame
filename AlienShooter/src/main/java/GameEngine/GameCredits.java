@@ -6,14 +6,14 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-public class GameSubtitles extends BasicGameState
+public class GameCredits extends BasicGameState
 {
     /**
-     *  Constructor for game subtitles
+     *  Constructor for game credits
      *
-     * @param gameSubtitles int
+     * @param gameCredits int
      */
-    public GameSubtitles(int gameSubtitles)
+    public GameCredits(int gameCredits)
     {
 
     }
@@ -26,7 +26,7 @@ public class GameSubtitles extends BasicGameState
     @Override
     public int getID()
     {
-        return 3;
+        return 2;
     }
 
     /**
