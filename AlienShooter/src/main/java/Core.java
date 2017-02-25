@@ -15,7 +15,7 @@ public final class Core extends StateBasedGame
     /**
      * Screen width (pixels)
      */
-    private static final int SCREEN_WIDTH  = 1600;
+    private static final int SCREEN_WIDTH = 1600;
 
     /**
      * Screen height (pixels)
