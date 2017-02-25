@@ -24,6 +24,18 @@ public final class GameMenu extends BasicGameState
      */
     private Image background;
 
+    // Start play button (inactive and active)
+    private Image playButton;
+    private Image playButtonActive;
+
+    // Show credits button (inactive and active)
+    private Image creditsButton;
+    private Image creditsButtonActive;
+
+    // Exit button (inactive and active)
+    private Image exitButton;
+    private Image exitButtonActive;
+
     /**
      * Constructor for menu screen
      *
@@ -56,10 +68,18 @@ public final class GameMenu extends BasicGameState
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException
     {
-        this.background = new Image(this.RESOURCE_PATH + "background/SpaceBack.png").getScaledCopy(gameContainer.getScreenWidth(), gameContainer.getScreenHeight());
-        this.cursor     = new Image(this.RESOURCE_PATH + "UI_Elements/cursor.png");
+        this.background = new Image(this.RESOURCE_PATH + "backgrounds/MenuBack.png").getScaledCopy(gameContainer.getScreenWidth(), gameContainer.getScreenHeight());
+        this.cursor     = new Image(this.RESOURCE_PATH + "ui_elements/Cursor.png");
 
-        gameContainer.setMouseCursor(this.cursor, 1,1);
+        // prepare our buttons
+        this.playButton             = new Image(this.RESOURCE_PATH + "ui_elements/buttons/PlayInactive.png");
+        this.playButtonActive       = new Image(this.RESOURCE_PATH + "ui_elements/buttons/PlayActive.png");
+        this.creditsButton          = new Image(this.RESOURCE_PATH + "ui_elements/buttons/CreditsInactive.png");
+        this.creditsButtonActive    = new Image(this.RESOURCE_PATH + "ui_elements/buttons/CreditsActive.png");
+        this.exitButton             = new Image(this.RESOURCE_PATH + "ui_elements/buttons/ExitInactive.png");
+        this.exitButtonActive       = new Image(this.RESOURCE_PATH + "ui_elements/buttons/ExitActive.png");
+
+        gameContainer.setMouseCursor(this.cursor, 0, 0);
     }
 
     /**
@@ -74,7 +94,17 @@ public final class GameMenu extends BasicGameState
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException
     {
+        // get half screen (width and height)
+        int xPos = gameContainer.getScreenWidth() / 2;
+        int yPos = gameContainer.getScreenHeight() / 2;
+
+        // background
         graphics.drawImage(this.background, 0, 0);
+
+        // buttons (play, credits, exit)
+        graphics.drawImage(this.playButton, xPos - (this.playButton.getWidth() / 2), yPos - 100);
+        graphics.drawImage(this.creditsButton, xPos - (this.creditsButton.getWidth() / 2), yPos);
+        graphics.drawImage(this.exitButton, xPos - (this.exitButton.getWidth() / 2), yPos + 100);
     }
 
     /**
