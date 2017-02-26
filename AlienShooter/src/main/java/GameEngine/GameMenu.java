@@ -1,10 +1,7 @@
 package GameEngine;
 
 import org.lwjgl.input.Mouse;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
+import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -24,6 +21,11 @@ public final class GameMenu extends BasicGameState
      * Background game
      */
     private Image background;
+
+    /**
+     * MenuTheme music
+     */
+    private Music menuTheme;
 
     // Start play button (inactive and active)
     private Image playButton;
@@ -89,6 +91,11 @@ public final class GameMenu extends BasicGameState
         this.playIsActive   = this.playButton;
         this.creditIsActive = this.creditsButton;
         this.exitIsActive   = this.exitButton;
+
+        // set theme music
+        this.menuTheme = new Music(this.RESOURCE_PATH + "sounds/MenuTheme.ogg");
+        this.menuTheme.setVolume(0.5f);
+        this.menuTheme.loop();
 
         gameContainer.setMouseCursor(this.cursor, 0, 0);
     }
