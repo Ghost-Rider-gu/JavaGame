@@ -1,5 +1,6 @@
 package GameEngine;
 
+import org.lwjgl.input.Mouse;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -35,6 +36,11 @@ public final class GameMenu extends BasicGameState
     // Exit button (inactive and active)
     private Image exitButton;
     private Image exitButtonActive;
+
+    // Changing buttons
+    private Image playIsActive;
+    private Image creditIsActive;
+    private Image exitIsActive;
 
     /**
      * Constructor for menu screen
@@ -79,6 +85,11 @@ public final class GameMenu extends BasicGameState
         this.exitButton             = new Image(this.RESOURCE_PATH + "ui_elements/buttons/ExitInactive.png");
         this.exitButtonActive       = new Image(this.RESOURCE_PATH + "ui_elements/buttons/ExitActive.png");
 
+        // set starting buttons
+        this.playIsActive   = this.playButton;
+        this.creditIsActive = this.creditsButton;
+        this.exitIsActive   = this.exitButton;
+
         gameContainer.setMouseCursor(this.cursor, 0, 0);
     }
 
@@ -102,9 +113,9 @@ public final class GameMenu extends BasicGameState
         graphics.drawImage(this.background, 0, 0);
 
         // buttons (play, credits, exit)
-        graphics.drawImage(this.playButton, xPos - (this.playButton.getWidth() / 2), yPos - 100);
-        graphics.drawImage(this.creditsButton, xPos - (this.creditsButton.getWidth() / 2), yPos);
-        graphics.drawImage(this.exitButton, xPos - (this.exitButton.getWidth() / 2), yPos + 100);
+        graphics.drawImage(this.playIsActive, xPos - (this.playButton.getWidth() / 2), yPos - 100);
+        graphics.drawImage(this.creditIsActive, xPos - (this.creditsButton.getWidth() / 2), yPos);
+        graphics.drawImage(this.exitIsActive, xPos - (this.exitButton.getWidth() / 2), yPos + 100);
     }
 
     /**
@@ -119,6 +130,49 @@ public final class GameMenu extends BasicGameState
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException
     {
+        // getting mouse position
+        int xPos = Mouse.getX();
+        int yPos = Mouse.getY();
 
+        // get X position first button (play)
+        int xStart  = (gameContainer.getScreenWidth() / 2) - (this.playButton.getWidth() /2) - 25;
+        int xEnd    = xStart + 146;
+
+        // get Y position first button (play)
+        int yStart  = ((gameContainer.getScreenHeight() / 2) + 100) - 25;
+        int yEnd    = yStart + 48;
+
+        // if a mouse cursor hovers the play button
+        if((xPos > xStart && xPos < xEnd) && (yPos > yStart && yPos < yEnd)) {
+            this.playIsActive = this.playButtonActive;
+
+            if(Mouse.isButtonDown(0)) {
+                stateBasedGame.enterState(1);
+            }
+        } else {
+            this.playIsActive = this.playButton;
+        }
+
+        // if a mouse cursor hovers the credits button
+        if((xPos > xStart && xPos < xEnd) && (yPos > yStart - 100 && yPos < yEnd - 100)) {
+            this.creditIsActive = this.creditsButtonActive;
+
+            if(Mouse.isButtonDown(0)) {
+                stateBasedGame.enterState(2);
+            }
+        } else {
+            this.creditIsActive = this.creditsButton;
+        }
+
+        // if a mouse cursor hovers the exit button
+        if((xPos > xStart && xPos < xEnd) && (yPos > yStart - 200 && yPos < yEnd - 200)) {
+            this.exitIsActive = this.exitButtonActive;
+
+            if(Mouse.isButtonDown(0)) {
+                System.exit(0);
+            }
+        } else {
+            this.exitIsActive = this.exitButton;
+        }
     }
 }
