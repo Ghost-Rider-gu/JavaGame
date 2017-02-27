@@ -1,9 +1,14 @@
 package GameEngine;
 
+import java.awt.Font;
+import java.io.InputStream;
+
 import org.lwjgl.input.Mouse;
+
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.util.ResourceLoader;
 
 public final class GameMenu extends BasicGameState
 {
@@ -26,6 +31,11 @@ public final class GameMenu extends BasicGameState
      * MenuTheme music
      */
     private Music menuTheme;
+
+    /**
+     * Main font for menu
+     */
+    private TrueTypeFont menuFont;
 
     // Start play button (inactive and active)
     private Image playButton;
@@ -92,6 +102,18 @@ public final class GameMenu extends BasicGameState
         this.creditIsActive = this.creditsButton;
         this.exitIsActive   = this.exitButton;
 
+        // set default font for main menu
+        InputStream menuFont = ResourceLoader.getResourceAsStream(this.RESOURCE_PATH + "fonts/MainFont.ttf");
+
+        try {
+            Font mainFont = Font.createFont(Font.TRUETYPE_FONT, menuFont);
+            mainFont = mainFont.deriveFont(64f);
+
+            this.menuFont = new TrueTypeFont(mainFont, false);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
         // set theme music
         this.menuTheme = new Music(this.RESOURCE_PATH + "sounds/MenuTheme.ogg");
         this.menuTheme.setVolume(0.5f);
@@ -118,6 +140,9 @@ public final class GameMenu extends BasicGameState
 
         // background
         graphics.drawImage(this.background, 0, 0);
+
+        // draw game name string
+        this.menuFont.drawString(xPos - 400, 200, "A L I E N      S H O O T E R", Color.lightGray);
 
         // buttons (play, credits, exit)
         graphics.drawImage(this.playIsActive, xPos - (this.playButton.getWidth() / 2), yPos - 100);
