@@ -142,7 +142,7 @@ public final class GameMenu extends BasicGameState
         graphics.drawImage(this.background, 0, 0);
 
         // draw game name string
-        this.menuFont.drawString(xPos - 400, 200, "A L I E N      S H O O T E R", Color.lightGray);
+        this.menuFont.drawString(xPos - 450, 200, "A L I E N   S H O O T E R", Color.white);
 
         // buttons (play, credits, exit)
         graphics.drawImage(this.playIsActive, xPos - (this.playButton.getWidth() / 2), yPos - 100);
