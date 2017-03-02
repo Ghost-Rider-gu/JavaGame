@@ -79,10 +79,10 @@ public final class GameCredits extends BasicGameState
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException
     {
-        Input myInput = gameContainer.getInput();
+        Input creditInput = gameContainer.getInput();
 
-        // if pressed key ESC then will return to main menu
-        if(myInput.isKeyDown(Input.KEY_ESCAPE)) {
+        // if pressed key ESC then return to main menu
+        if(creditInput.isKeyDown(Input.KEY_ESCAPE)) {
             stateBasedGame.enterState(0);
         }
     }
