@@ -1,13 +1,21 @@
 package GameEngine;
 
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.SlickException;
+import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-public class GameCredits extends BasicGameState
+public final class GameCredits extends BasicGameState
 {
+    /**
+     * Background for this state
+     */
+    private Image background;
+
+    /**
+     * Const with path to resources
+     */
+    private final String PATH_RESOURCES = "AlienShooter/resources/";
+
     /**
      *  Constructor for game credits
      *
@@ -40,7 +48,8 @@ public class GameCredits extends BasicGameState
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException
     {
-
+        // set background
+        this.background = new Image(this.PATH_RESOURCES + "backgrounds/SpaceBack.png").getScaledCopy(gameContainer.getScreenWidth(), gameContainer.getScreenHeight());
     }
 
     /**
@@ -55,7 +64,7 @@ public class GameCredits extends BasicGameState
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException
     {
-
+        graphics.drawImage(this.background, 0, 0);
     }
 
     /**
@@ -70,6 +79,11 @@ public class GameCredits extends BasicGameState
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException
     {
+        Input myInput = gameContainer.getInput();
 
+        // if pressed key ESC then will return to main menu
+        if(myInput.isKeyDown(Input.KEY_ESCAPE)) {
+            stateBasedGame.enterState(0);
+        }
     }
 }
