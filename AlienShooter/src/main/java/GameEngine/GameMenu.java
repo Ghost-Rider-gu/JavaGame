@@ -23,11 +23,6 @@ public final class GameMenu extends BasicGameState
     private Image cursor;
 
     /**
-     * Background game
-     */
-    private Image background;
-
-    /**
      * MenuTheme music
      */
     private Music menuTheme;
@@ -36,6 +31,11 @@ public final class GameMenu extends BasicGameState
      * Main font for menu
      */
     private TrueTypeFont menuFont;
+
+    /**
+     * Animation background
+     */
+    private Animation backgroundAnim;
 
     // Start play button (inactive and active)
     private Image playButton;
@@ -86,8 +86,44 @@ public final class GameMenu extends BasicGameState
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException
     {
-        this.background = new Image(this.RESOURCE_PATH + "backgrounds/MenuBack.png").getScaledCopy(gameContainer.getScreenWidth(), gameContainer.getScreenHeight());
-        this.cursor     = new Image(this.RESOURCE_PATH + "ui_elements/Cursor.png");
+        this.cursor = new Image(this.RESOURCE_PATH + "ui_elements/Cursor.png");
+
+        // array of Image (all sprites for our background)
+        Image backAnimation[] = { new Image(this.RESOURCE_PATH + "backgrounds/animBack/0.png"),
+                                  new Image(this.RESOURCE_PATH + "backgrounds/animBack/1.png"),
+                                  new Image(this.RESOURCE_PATH + "backgrounds/animBack/2.png"),
+                                  new Image(this.RESOURCE_PATH + "backgrounds/animBack/3.png"),
+                                  new Image(this.RESOURCE_PATH + "backgrounds/animBack/4.png"),
+                                  new Image(this.RESOURCE_PATH + "backgrounds/animBack/5.png"),
+                                  new Image(this.RESOURCE_PATH + "backgrounds/animBack/6.png"),
+                                  new Image(this.RESOURCE_PATH + "backgrounds/animBack/7.png"),
+                                  new Image(this.RESOURCE_PATH + "backgrounds/animBack/8.png"),
+                                  new Image(this.RESOURCE_PATH + "backgrounds/animBack/9.png"),
+                                  new Image(this.RESOURCE_PATH + "backgrounds/animBack/10.png"),
+                                  new Image(this.RESOURCE_PATH + "backgrounds/animBack/11.png"),
+                                  new Image(this.RESOURCE_PATH + "backgrounds/animBack/12.png"),
+                                  new Image(this.RESOURCE_PATH + "backgrounds/animBack/13.png"),
+                                  new Image(this.RESOURCE_PATH + "backgrounds/animBack/14.png"),
+                                  new Image(this.RESOURCE_PATH + "backgrounds/animBack/15.png"),
+                                  new Image(this.RESOURCE_PATH + "backgrounds/animBack/16.png"),
+                                  new Image(this.RESOURCE_PATH + "backgrounds/animBack/17.png"),
+                                  new Image(this.RESOURCE_PATH + "backgrounds/animBack/18.png"),
+                                  new Image(this.RESOURCE_PATH + "backgrounds/animBack/19.png"),
+                                  new Image(this.RESOURCE_PATH + "backgrounds/animBack/20.png"),
+                                  new Image(this.RESOURCE_PATH + "backgrounds/animBack/21.png"),
+                                  new Image(this.RESOURCE_PATH + "backgrounds/animBack/22.png"),
+                                  new Image(this.RESOURCE_PATH + "backgrounds/animBack/23.png"),
+                                  new Image(this.RESOURCE_PATH + "backgrounds/animBack/24.png"),
+                                  new Image(this.RESOURCE_PATH + "backgrounds/animBack/25.png"),
+                                  new Image(this.RESOURCE_PATH + "backgrounds/animBack/26.png"),
+                                  new Image(this.RESOURCE_PATH + "backgrounds/animBack/27.png"),
+                                  new Image(this.RESOURCE_PATH + "backgrounds/animBack/28.png"),
+                                  new Image(this.RESOURCE_PATH + "backgrounds/animBack/29.png") };
+
+        int animDuration[] = { 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200,
+                               200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200 };
+
+        this.backgroundAnim = new Animation(backAnimation, animDuration, true);
 
         // prepare our buttons
         this.playButton             = new Image(this.RESOURCE_PATH + "ui_elements/buttons/PlayInactive.png");
@@ -138,8 +174,8 @@ public final class GameMenu extends BasicGameState
         int xPos = gameContainer.getScreenWidth() / 2;
         int yPos = gameContainer.getScreenHeight() / 2;
 
-        // background
-        graphics.drawImage(this.background, 0, 0);
+        // Our animated background
+        this.backgroundAnim.draw(0,0, gameContainer.getScreenWidth(), gameContainer.getScreenHeight());
 
         // draw game name string
         this.menuFont.drawString(xPos - 450, 200, "A L I E N   S H O O T E R", Color.white);
@@ -162,6 +198,9 @@ public final class GameMenu extends BasicGameState
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException
     {
+        // update animation
+        this.backgroundAnim.update(delta);
+
         // getting mouse position
         int xPos = Mouse.getX();
         int yPos = Mouse.getY();
