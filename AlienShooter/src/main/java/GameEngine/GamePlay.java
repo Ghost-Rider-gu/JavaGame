@@ -21,6 +21,10 @@ public class GamePlay extends BasicGameState
      */
     private Image mainPlayer;
 
+    private Image playerLife;
+    private Image countLife;
+    private Image xImage;
+
     // Parameters for main player
     private float xPosPlayer;
     private float speedPlayer = 0.2f;
@@ -55,6 +59,10 @@ public class GamePlay extends BasicGameState
         // main player
         this.mainPlayer = new Image(this.PATH_RESOURCES + "sprites/MainPlayer.png");
 
+        this.playerLife = new Image(this.PATH_RESOURCES + "ui_elements/PlayerLife.png");
+
+        this.xImage = new Image(this.PATH_RESOURCES + "ui_elements/numbers/X.png");
+
         this.xPosPlayer = (gameContainer.getScreenWidth() / 2) - this.mainPlayer.getWidth();
     }
 
@@ -65,6 +73,10 @@ public class GamePlay extends BasicGameState
         int yPos = gameContainer.getScreenHeight() - (this.mainPlayer.getHeight() + 10);
 
         graphics.drawImage(this.backgroung, 0, 0);
+
+        graphics.drawImage(this.playerLife, gameContainer.getScreenWidth() - 100, 20);
+
+        graphics.drawImage(this.xImage, gameContainer.getScreenWidth() - 60, 25);
 
         graphics.drawImage(this.mainPlayer, this.xPosPlayer, yPos);
     }
