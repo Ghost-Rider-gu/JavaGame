@@ -50,6 +50,14 @@ public class GamePlay extends BasicGameState
         return 1;
     }
 
+    /**
+     * Prepare the GamePlay
+     *
+     * @param gameContainer     {@link GameContainer}
+     * @param stateBasedGame    {@link StateBasedGame}
+     *
+     * @throws SlickException   {@link SlickException}
+     */
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException
     {
@@ -66,6 +74,15 @@ public class GamePlay extends BasicGameState
         this.xPosPlayer = (gameContainer.getScreenWidth() / 2) - this.mainPlayer.getWidth();
     }
 
+    /**
+     * Rendering, draw images etc.
+     *
+     * @param gameContainer     {@link GameContainer}
+     * @param stateBasedGame    {@link StateBasedGame}
+     * @param graphics          {@link Graphics}
+     *
+     * @throws SlickException   {@link SlickException}
+     */
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException
     {
@@ -81,6 +98,15 @@ public class GamePlay extends BasicGameState
         graphics.drawImage(this.mainPlayer, this.xPosPlayer, yPos);
     }
 
+    /**
+     * AI game
+     *
+     * @param gameContainer     {@link GameContainer}
+     * @param stateBasedGame    {@link StateBasedGame}
+     * @param delta             int
+     *
+     * @throws SlickException   {@link SlickException}
+     */
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException
     {
