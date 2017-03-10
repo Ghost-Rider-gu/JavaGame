@@ -86,6 +86,9 @@ public final class GameMenu extends BasicGameState
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException
     {
+        // hide FPS
+        gameContainer.setShowFPS(false);
+
         this.cursor = new Image(this.RESOURCE_PATH + "ui_elements/Cursor.png");
 
         // array of Image (all sprites for our background)
