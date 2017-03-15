@@ -1,4 +1,6 @@
 # Alien Shooter
 
----
-Space adventure
+
+    The Space Adventure
+
+![Alt text](GameScreen.png?raw=true "Main Screen")
