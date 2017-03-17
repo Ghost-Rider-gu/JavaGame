@@ -17,6 +17,11 @@ public class GamePlay extends BasicGameState
     private Image backgroung;
 
     /**
+     * Game play music
+     */
+    private Music playTheme;
+
+    /**
      * Sprite - main player
      */
     private Image mainPlayer;
@@ -72,6 +77,10 @@ public class GamePlay extends BasicGameState
         this.xImage = new Image(this.PATH_RESOURCES + "ui_elements/numbers/X.png");
 
         this.xPosPlayer = (gameContainer.getScreenWidth() / 2) - this.mainPlayer.getWidth();
+
+        if (!gameContainer.isMouseGrabbed()) {
+            gameContainer.setMouseGrabbed(true);
+        }
     }
 
     /**
