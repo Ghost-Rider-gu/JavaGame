@@ -5,6 +5,9 @@ import GameEngine.GameCredits;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.StateBasedGame;
 
+/**
+ * The Game Core (include game states, configuration game)
+ */
 public final class Core extends StateBasedGame
 {
     /**
@@ -65,6 +68,9 @@ public final class Core extends StateBasedGame
         try {
                 alienShooter = new AppGameContainer(new Core(GAME_NAME));
                 alienShooter.setDisplayMode(SCREEN_WIDTH, SCREEN_HEIGHT, true);
+                alienShooter.setTargetFrameRate(60);
+                alienShooter.setShowFPS(false);
+                alienShooter.setAlwaysRender(true);
                 alienShooter.start();
         } catch (SlickException ex) {
             ex.printStackTrace();
